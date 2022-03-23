@@ -1,14 +1,9 @@
 import { of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
-const source = of(1, 2, 3, 4, 5);
-
-source
+of(Math.random())
   .pipe(
-    tap((n) => {
-      if (n > 3) {
-        console.log(`Value ${n} is greater than 3`);
-      }
-    })
+    tap(console.log),
+    map((n) => (n > 0.5 ? 'big' : 'small'))
   )
   .subscribe(console.log);
